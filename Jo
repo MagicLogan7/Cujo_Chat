@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Chat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    #chat-container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+
+    #chat-messages {
+      max-height: 300px;
+      overflow-y: scroll;
+      border-bottom: 1px solid #ccc;
+    }
+
+    #message-input {
+      width: 80%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    button {
+      padding: 10px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="chat-container">
+    <div id="chat-messages"></div>
+    <input type="text" id="message-input" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+  <script>
+    const messages = [
+      { user: 'User1', message: 'Hello!' },
+      { user: 'User2', message: 'Hi there!' },
+      // Add more messages as needed
+    ];
+
+    function displayMessages() {
+      const chatMessages = document.getElementById('chat-messages');
+      chatMessages.innerHTML = '';
+      messages.forEach((msg) => {
+        const messageElement = document.createElement('div');
+        messageElement.textContent = `${msg.user}: ${msg.message}`;
+        chatMessages.appendChild(messageElement);
+      });
+    }
+
+    function sendMessage() {
+      const userInput = document.getElementById('message-input');
+      const message = userInput.value.trim();
+      if (message !== '') {
+        messages.push({ user: 'User1', message });
+        displayMessages();
+        userInput.value = '';
+      }
+    }
+
+    window.onload = displayMessages;
+  </script>
+</body>
+</html>
